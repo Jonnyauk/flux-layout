@@ -22,18 +22,23 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 
 /* Additional resets */
 
-*, *:after, *:before {
+html {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
 /*** Containers and alignment ***/
 
-.pad-tiny { padding: 1%; }
-.pad-small { padding: 2.5%; }
-.pad-medium { padding: 5%; }
-.pad-large { padding: 10%; }
+.pad-tiny, .pad-small, .pad-medium, .pad-large { margin: 0; }
+.pad-tiny { padding: 5px; }
+.pad-small { padding: 10px; }
+.pad-medium { padding: 20px; }
+.pad-large { padding: 40px; }
 
 .alignright, .align-right { float: right; margin: 0 0 5px 20px; }
 .alignleft, .align-left { float: left; margin: 0 20px 5px 0; }
@@ -104,7 +109,7 @@ img.wp-post-image {
  * Google Maps breaks if 'max-width: 100%' acts upon it
  * If 'width' and/or 'height' explicitly defined, don't make fluid
  */
-.gm-style img, img[width], img[height] { max-width: none; }
+.gm-style img, .gm-style img[width], .gm-style img[height] { max-width: none; }
 
 /*** WordPress Specific ***/
 
@@ -134,10 +139,10 @@ $wf_grid = new wflux_layout;
 $wf_grid->grid_containers();
 $wf_grid->grid_float_blocks();
 $wf_grid->grid_blocks();
-$wf_grid->grid_relative_loops( array(1,2,3,4,5,6,7,8,9,10,11,12,16,32) );
 $wf_grid->grid_space_loops();
 $wf_grid->grid_push_loops();
-$wf_grid->grid_media_queries( array(2,4,8) );
+$wf_grid->grid_relative_loops();
+$wf_grid->grid_media_queries();
 
 /**
  * Percent based CSS and media query layout generator
@@ -146,9 +151,11 @@ $wf_grid->grid_media_queries( array(2,4,8) );
 class wflux_layout {
 
 	protected $rwd_width;				// Width of main container (% or pixels)
-	protected $rwd_columns;				// Number of columns in layout
-	protected $rwd_column_width;		// Width of columns (%)
-	protected $rwd_class_prepend;		// Prepend all CSS selectors (or not!)
+	protected $rwd_columns;				// INPUT - Number of columns in layout
+	protected $rwd_column_width;		// INPUT - Width of columns (%)
+	protected $rwd_class_prepend;		// INPUT - Prepend all CSS selectors (or not!)
+	protected $rwd_relative;			// Array for general relative sizes to generate
+	protected $mq_specific;				// Array for media specific relative sizes to generate
 	protected $rwd_minify;				// CSS selector - column width blocks
 	protected $rwd_class_space_left;	// CSS selector - padding left
 	protected $rwd_class_space_right;	// CSS selector - padding right
@@ -157,13 +164,13 @@ class wflux_layout {
 
 	function __construct() {
 
-		// TODO: - Add in filters
-		// TODO: Build admin option controls
-
 		$this->rwd_width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
 		$this->rwd_columns = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 20;
+		//$this->rwd_class_prepend = ( isset($this->rwd_class_prepend) && !preg_match('/s/[&<>"\']/', $this->rwd_class_prepend) ) ? $this->rwd_class_prepend : 'box';
+		$this->rwd_class_prepend = ( !isset($this->rwd_class_prepend) ) ? 'box-': strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->rwd_class_prepend) );
 		$this->rwd_column_width = 100 / $this->rwd_columns;
-		$this->rwd_class_prepend = 'box-';
+		$this->rwd_relative = array(1,2,3,4,5,6,7,8,9,10,11,12,16,32);
+		$this->mq_specific = array(2,4,8,16);
 		$this->rwd_minify = "\n";
 
 		$this->rwd_class_space_left = $this->rwd_class_prepend . 'pad-left';
@@ -189,11 +196,13 @@ class wflux_layout {
 	 */
 	function grid_float_blocks(){
 
+		echo '/**** Grid blocks ****/' . "\n";
+
 		for ( $limit=1; $limit <= $this->rwd_columns; $limit++ ) {
 			echo 'div.' . $this->rwd_class_prepend . $limit;
 			echo ($limit == $this->rwd_columns) ? '' : ', ';
 		}
-		echo " { float: left; margin: 0; }" . $this->rwd_minify_2;
+		echo " { float: left; margin: 0; }" . $this->rwd_minify;
 
 	}
 
@@ -248,11 +257,11 @@ class wflux_layout {
 	 * Outputs relative sized CSS
 	 * $sizes = array of integers representing what sizes to output
 	 */
-	function grid_relative_loops( $sizes ) {
+	function grid_relative_loops() {
 
-		if ( !is_array($sizes) ) return;
+		if ( !is_array($this->rwd_relative) ) return;
 
-		foreach ( $sizes as $size ) {
+		foreach ( $this->rwd_relative as $size ) {
 
 			if ( intval($size) >= 1 && intval($size) < 101 ) {
 
@@ -322,7 +331,7 @@ class wflux_layout {
 	 * rwd-medium Medium screens - Standard computers and landscape tablets
 	 * rwd-large Large screens - Swanky hi-res screens
 	 */
-	function grid_media_queries( $sizes_rel ) {
+	function grid_media_queries() {
 
 		// TODO: Options and filters on min or max width
 		// TODO: Options and filters on breakpoint integers
@@ -360,7 +369,7 @@ class wflux_layout {
 		// Array of just definitions - used for -hide-except rules
 		$all_defs = array();
 
-		foreach ($sizes_mq as $size) {
+		foreach ( $sizes_mq as $size ) {
 			$all_defs[] = $size['def']; // Used to exclude in hider media queries
 			$sizes_min[] = $size['min']; // Used to exclude in hider media queries
 			$sizes_max[] = $size['max']; // Used to exclude in hider media queries
@@ -370,19 +379,19 @@ class wflux_layout {
 
 		foreach ( $sizes_mq as $size ) {
 
-			// Units are only ever 2 characters...right?
 			$units = ( !$size[units] && $size[units] == 'px' ) ? 'px' : substr( $size[units], 0, 2 );
 			$min = ( !$size[min] && !is_numeric($size[min]) ) ? '' : 'and ( min-width:' . $size[min] . $units . ' )';
 			$max = ( !$size[max] && !is_numeric($size[max]) ) ? '' : 'and ( max-width:' . $size[max] . $units . ' )';
 			$size_queries = ( !empty($min) && !empty($max) ) ? $min . ' ' . $max : $min . $max;
 
-			// Core media queries
-			// TODO: More to come!
+			// Specific breakpoint hider
+
 			echo '/* ' . $size['def'] . ': ' . $size['note'] . ' */' . $this->rwd_minify
 			. '@media screen ' . $size_queries . ' {' . $this->rwd_minify
 			. ' .' . $size['def'] . '-hide { display: none; }' . $this->rwd_minify;
 
-			// Hiders
+			// Other breakpoint hiders
+
 			$o_count = 2;
 			foreach ( $all_defs as $def ) {
 				$o_1 = ( ($all_defs_count) == $o_count ) ? ' ' : ',';
@@ -391,31 +400,18 @@ class wflux_layout {
 			}
 			echo '{ display: none; }' . $this->rwd_minify;
 
-			// Relative sized resizers
+			// Specific proportional breakpoint sizers
+
 			echo ' .' . $size['def'] . '-1-1, .' . $size['def'] . '-full { width: 100%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-2 { width: 50%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-3 { width: 33.3333%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-4 { width: 25%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-5 { width: 20%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-6 { width: 16.6666%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-7 { width: 14.2857%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-8 { width: 12.5%; } ' . $this->rwd_minify;
-			/* Dont need individual rules for each
-			foreach ( $sizes_rel as $size_r ) {
-				if ( intval($size_r) > 1 && intval($size_r) < 101 ){
+
+			foreach ( $this->mq_specific as $size_r ) {
+				if ( intval($size_r) > 1 && intval($size_r) < 101 ) {
 					for ( $limit=1; $limit < $size_r; $limit++ ) {
-						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r . '-full'
-						. ' { width: 100%; } ' . $this->rwd_minify;
-						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r . '-half'
-						. ' { width: 50%; } ' . $this->rwd_minify;
-						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r . '-third'
-						. ' { width: 33.3333%; } ' . $this->rwd_minify;
-						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r . '-quarter'
-						. ' { width: 25%; } ' . $this->rwd_minify;
+						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r
+						. ' { width: ' . (100/$size_r)*$limit . '%; float:left; } ' . $this->rwd_minify;
 					}
 				}
 			}
-			*/
 
 			// Close media query
 			echo '}' . $this->rwd_minify_2;
