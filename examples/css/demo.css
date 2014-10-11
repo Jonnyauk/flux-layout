@@ -1,0 +1,79 @@
+/**
+ *
+ * Flux Layout - A dynamic percentage based layout engine
+ * https://github.com/Jonnyauk/flux-layout
+ * 
+ * Built for the Wonderflux theme framework
+ * https://github.com/Jonnyauk/Wonderflux
+ *
+ * Basic styling for the demo
+ *
+ * @package Flux Layout
+ *
+ */
+
+/* @group Typography */
+
+h1 { color: #18aca2; }
+h2,
+h3,
+p { color: #40466a; }
+h3.colour-accent,
+
+p.colour-accent { background-color: #40466a; color: #d8e2cf; }
+.colour-alt-3 p, 
+.colour-alt-4 p { color: #d1d3df; }
+
+.code { font-family: "Courier New", Courier, mono; }
+.meta { font-size: 80%; }
+
+/* @end */
+
+
+/* @group Links */
+
+a { color: #18aca2; text-decoration: none; }
+a:hover { color: #14d6ce; }
+
+/* @end */
+
+
+/* @group Background colours */
+
+body { background-color: #d8e2cf; }
+article { background-color: #ffffff; }
+
+.colour-alt-1 { background-color: #d9e2cf; }
+.colour-alt-2 { background-color: #bacba6; }
+.colour-alt-3 { background-color: #416a69; }
+.colour-alt-4 { background-color: #284342; }
+
+/* @end */
+
+
+/* @group Main content */
+
+article { padding: 30px 0 30px 0; }
+
+/* @end */
+
+
+/* @group Media queries */
+
+@media screen and ( max-width:480px ) {
+	
+	* { font-size: 97%; }
+	.code { display: block; }
+	header,
+	footer { text-align: center; }
+
+}
+
+@media screen and ( min-width:481px ) and ( max-width:768px ) {
+	
+	* { font-size: 99%; }
+	.code { display: block; }
+
+}
+
+/* @end */
