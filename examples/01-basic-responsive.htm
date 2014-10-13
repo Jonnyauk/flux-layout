@@ -5,15 +5,26 @@
 
 	<meta charset="utf-8">
 	<title>Flux Layout demonstration</title>
+
 	<meta name="description" content="Flux Layout demonstration">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Change path to ../lib/flux-layout-dynamic.php for dynamic version -->
-	<link rel="stylesheet" href="../lib/flux-layout-static.css">
+	<!-- 1) Flux Layout CSS - readable non-compressed version
+	Change path to: "../lib/flux-layout-static.css"
+	-->
+
+	<!-- 2) Flux Layout Dynamic - Experimental dynamic PHP generated responsive grid system
+	Change path to: "../lib/flux-layout-dynamic.php?&amp;w=80&amp;c=16"
+	w = width of main container
+	c = number of columns
+	-->
+
+	<!-- Flux Layout minified (compressed production version) -->
+	<link rel="stylesheet" href="../lib/flux-layout-static-min.css">
+	<!-- Additional demo styling - not required for Flux Layout -->
 	<link rel="stylesheet" href="css/demo.css">
 
 	<script src="../js/modernizr-2.8.3.min.js"></script>
-
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
