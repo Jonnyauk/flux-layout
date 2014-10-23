@@ -20,7 +20,7 @@
 	-->
 
 	<!-- Flux Layout minified (compressed production version) -->
-	<link rel="stylesheet" href="../lib/flux-layout-static-min.css">
+	<link rel="stylesheet" href="../lib/flux-layout-static.css">
 	<!-- Additional demo styling - not required for Flux Layout -->
 	<link rel="stylesheet" href="css/demo.css">
 
@@ -54,28 +54,29 @@
 <article class="wrapper flux-layout-test-01">
 	<div class="container">
 
-		<h3 class="pad-small colour-accent flush-bottom">Basic small screen media queries demo</h3>
+		<h2 class="pad-small colour-accent">Basic small screen <span class="mq-tiny-keep">media queries demo</span></h2>
 
-		<!-- Introduction section START -->
-		<section class="row introduction-1">
+
+		<!-- Introduction 1 START -->
+		<section class="row basic-intro-1">
 
 			<h3 class="pad-small colour-accent flush-bottom">1) A row of two responsive divs</h3>
 			<p class="meta pad-small colour-accent">All divs have the same CSS classes applied: <span class="code">box-1-2 mq-small-min-1-1</span></p>
 
 			<div class="box-1-2 mq-small-min-1-1 pad-small colour-alt-1">
-				<p><span class="detail">1.1)</span> I am 1-2 size until the screen gets small, then I go to full width.</p>
+				<p><span class="detail">1.1)</span> I am 1-2 size until the screen gets small, <span class="mq-tiny-keep">then I go to full width.</span></p>
 			</div>
 
 			<div class="box-1-2 mq-small-min-1-1 pad-small colour-alt-2">
-				<p><span class="detail">1.2)</span> I am 1-2 size until the screen gets small, then I go to full width.</p>
+				<p><span class="detail">1.2)</span> I am 1-2 size until the screen gets small, <span class="mq-tiny-keep">then I go to full width.</span></p>
 			</div>
 
 		</section>
-		<!-- Introduction section END -->
+		<!-- Introduction 1 END -->
 
 
-		<!-- Introduction section START -->
-		<section class="row introduction-2">
+		<!-- Introduction 2 START -->
+		<section class="row basic-intro-2">
 
 			<h3 class="pad-small colour-accent flush-bottom">2) A row of four responsive divs</h3>
 			<p class="meta pad-small colour-accent">All divs have the same CSS classes applied: <span class="code">box-1-4 mq-small-1-2 mq-tiny-1-1</span></p>
@@ -97,12 +98,11 @@
 			</div>
 
 		</section>
-		<!-- Introduction section END -->
+		<!-- Introduction 2 END -->
 
 
-
-		<!-- Introduction section START -->
-		<section class="row introduction-3">
+		<!-- Introduction 3 START -->
+		<section class="row basic-intro-3">
 
 			<h3 class="pad-small colour-accent flush-bottom">3) A row of eight responsive divs</h3>
 			<p class="meta pad-small colour-accent">All divs have the same CSS classes applied: <span class="code">box-1-4 mq-large-1-8 mq-tiny-1-2</span></p>
@@ -140,7 +140,94 @@
 			</div>
 
 		</section>
-		<!-- Introduction section END -->
+		<!-- Introduction 3 END -->
+
+		<h2 class="colour-accent">Traditional columns (with gutter) - 16 columns</h2>
+
+
+		<section class="row column clearfix">
+
+			<div class="column-1-16 colour-alt-1">
+				<p>1-1</p>
+			</div>
+
+			<div class="column-13-16 colour-alt-2">
+				<p>13-16</p>
+			</div>
+
+			<div class="column-2-16 colour-alt-3">
+				<p>2-16</p>
+			</div>
+
+		</section>
+
+		<section class="row column clearfix">
+
+			<div class="column-3-16 colour-alt-3">
+				<p>3-16</p>
+			</div>
+
+			<div class="column-9-16 colour-alt-2">
+				<p>9-16</p>
+			</div>
+
+			<div class="column-4-16 colour-alt-1">
+				<p>4-16</p>
+			</div>
+
+		</section>
+
+		<section class="row column clearfix">
+
+			<div class="column-5-16 colour-alt-1">
+				<p>5-16</p>
+			</div>
+
+			<div class="column-5-16 colour-alt-2">
+				<p>5-16</p>
+			</div>
+
+			<div class="column-6-16 colour-alt-3">
+				<p>6-16</p>
+			</div>
+
+		</section>
+
+
+		<h2 class="colour-accent">Traditional columns (with gutter) - 10 columns</h2>
+
+
+		<section class="row column clearfix">
+
+			<div class="column-1-10 colour-alt-1">
+				<p>1-10</p>
+			</div>
+
+			<div class="column-7-10 colour-alt-2">
+				<p>7-10</p>
+			</div>
+
+			<div class="column-2-10 colour-alt-3">
+				<p>2-10</p>
+			</div>
+
+		</section>
+
+		<section class="row column clearfix">
+
+			<div class="column-3-10 colour-alt-3">
+				<p>3-10</p>
+			</div>
+
+			<div class="column-3-10 colour-alt-2">
+				<p>3-10</p>
+			</div>
+
+			<div class="column-4-10 colour-alt-1">
+				<p>4-10</p>
+			</div>
+
+		</section>
 
 	</div>
 </article>
