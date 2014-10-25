@@ -54,7 +54,82 @@
 <article class="wrapper flux-layout-test-01">
 	<div class="container">
 
-		<h2 class="pad-small colour-accent">Basic small screen <span class="mq-tiny-keep">media queries demo</span></h2>
+		<p>
+			With the standard Flux Layout configuration you get 4 breakpoints aimed
+			at a broad screen types/user experiences, rather than individual devices.
+		</p>
+		<p>
+			All media query specific CSS classes are prepended with:<br/>
+			<span class="code">.mq-tiny-</span> Very small screens like portrait phones<br/>
+			<span class="code">.mq-small-</span> Lower spec landscape phones and some portrait tablets<br/>
+			<span class="code">.mq-medium-</span> Standard computers and landscape tablets<br/>
+			<span class="code">.mq-large-</span> Large, high resolution computer screens (like retina) and HD TV&#x27;s
+		</p>
+
+		<h2 class="colour-accent">Media Query visibility</h2>
+
+		<section class="row clearfix">
+
+			<div class="box-1-4 pad-small colour-alt-1">
+				<p class="mq-tiny-only">&gt; ACTIVE &lt;</p>
+				<p class="mq-tiny-hide">&nbsp;</p>
+				<p>TINY</p>
+			</div>
+
+			<div class="box-1-4 pad-small colour-alt-2">
+				<p class="mq-small-only">&gt; ACTIVE &lt;</p>
+				<p class="mq-small-hide">&nbsp;</p>
+				<p>SMALL</p>
+			</div>
+
+			<div class="box-1-4 pad-small colour-alt-3">
+				<p class="mq-medium-only">&gt; ACTIVE &lt;</p>
+				<p class="mq-medium-hide">&nbsp;</p>
+				<p>MEDIUM</p>
+			</div>
+
+			<div class="box-1-4 pad-small colour-alt-4">
+				<p class="mq-large-only">&gt; ACTIVE &lt;</p>
+				<p class="mq-large-hide">&nbsp;</p>
+				<p>LARGE</p>
+			</div>
+
+		</section>
+
+		<section class="row clearfix">
+
+			<div class="box-1-1 pad-small colour-alt-1">
+				<p class="mq-tiny-only">&gt; &gt; SHOW FOR TINY &lt; &lt;</p>
+				<p class="mq-tiny-only"><span class="code">.mq-tiny-show</span></p>
+				<p class="mq-tiny-hide"><span class="code">.mq-tiny-hide</span></p>
+				<p class="mq-tiny-hide">HIDE FOR TINY</p>
+			</div>
+
+			<div class="box-1-1 pad-small colour-alt-2">
+				<p class="mq-small-only">&gt; &gt; SHOW FOR SMALL &lt; &lt;</p>
+				<p class="mq-small-only"><span class="code">.mq-small-show</span></p>
+				<p class="mq-small-hide"><span class="code">.mq-small-hide</span></p>
+				<p class="mq-small-hide">HIDE FOR SMALL</p>
+			</div>
+
+			<div class="box-1-1 pad-small colour-alt-3">
+				<p class="mq-medium-only">&gt; &gt; SHOW FOR MEDIUM &lt; &lt;</p>
+				<p class="mq-medium-only"><span class="code">.mq-medium-show</span></p>
+				<p class="mq-medium-hide"><span class="code">.mq-medium-hide</span></p>
+				<p class="mq-medium-hide">HIDE FOR MEDIUM</p>
+			</div>
+
+			<div class="box-1-1 pad-small colour-alt-4">
+				<p class="mq-large-only">&gt; &gt; SHOW FOR LARGE &lt; &lt;</p>
+				<p class="mq-large-only"><span class="code">.mq-large-show</span></p>
+				<p class="mq-large-hide"><span class="code">.mq-large-hide</span></p>
+				<p class="mq-large-hide">HIDE FOR LARGE</p>
+			</div>
+
+		</section>
+
+
+		<h2 class="colour-accent">Basic small screen <span class="mq-tiny-keep">media queries demo</span></h2>
 
 
 		<!-- Introduction 1 START -->

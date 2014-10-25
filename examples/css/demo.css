@@ -2,7 +2,7 @@
  *
  * Flux Layout - A dynamic percentage based layout engine
  * https://github.com/Jonnyauk/flux-layout
- * 
+ *
  * Built for the Wonderflux theme framework
  * https://github.com/Jonnyauk/Wonderflux
  *
@@ -21,7 +21,7 @@ p { color: #40466a; }
 h3.colour-accent,
 
 p.colour-accent { background-color: #40466a; color: #d8e2cf; }
-.colour-alt-3 p, 
+.colour-alt-3 p,
 .colour-alt-4 p { color: #d1d3df; }
 
 .code { font-family: "Courier New", Courier, mono; }
@@ -53,7 +53,7 @@ article { background-color: #ffffff; }
 
 /* @group Main content */
 
-article { padding: 30px 0 30px 0; }
+article { padding: 10px 0 30px 0; }
 
 /* @end */
 
@@ -61,7 +61,7 @@ article { padding: 30px 0 30px 0; }
 /* @group Media queries */
 
 @media screen and ( max-width:480px ) {
-	
+
 	* { font-size: 97%; }
 	.container { width: 100%; }
 	.code { display: block; }
@@ -71,7 +71,7 @@ article { padding: 30px 0 30px 0; }
 }
 
 @media screen and ( min-width:481px ) and ( max-width:768px ) {
-	
+
 	* { font-size: 99%; }
 	.container { width: 90%; }
 	.code { display: block; }
