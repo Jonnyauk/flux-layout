@@ -33,8 +33,6 @@
 
 <body>
 
-<!-- Header section START -->
-
 <header class="wrapper primary-title">
 	<div class="container">
 
@@ -49,10 +47,47 @@
 	</div>
 </header>
 
-<!-- Header section END -->
-
-<article class="wrapper flux-layout-test-01">
+<article class="wrapper flux-layout-test-01a">
 	<div class="container">
+
+		<h2>Introduction</h2>
+
+		<h3>Flux Layout can be used in a number of different ways:</h3>
+		<ol>
+			<li>As a static CSS file</li>
+			<li>Dynamically generated on every page visit, with your own grid/naming configration and more!</li>
+			<li>As a WordPress theme using the <a href="http://wonderflux.com">Wonderflux theme framework</a></li>
+		</ol>
+
+		<h3>First things first...</h3>
+
+		<p>Wrap your content in two block level elements - like <span class="code">&lt;div&gt;</span> or <span class="code">&lt;section&gt;</span> as below. The first has a class of <span class="code">wrapper</span>, the second has a class of <span class="code">container</span>.
+
+		<p><span class="code">
+
+			&lt;div class=&quot;wrapper&quot;&gt;<br/>
+			&nbsp;&lt;div class=&quot;container&quot;&gt;<br/>
+			&nbsp;&nbsp;... content goes here ... <br/>
+			&nbsp;&lt;/div&gt;<br/>
+			&lt;/div&gt;<br/>
+
+		</span></p>
+
+		<p>Optionally, you can add an additional block level element inside these (see the note on columns below), with a class of <span class="code">row</span> to keep rows of elements together in a row. This is essentially a 100% width container (of the parent container).</p>
+
+		<p><span class="code">
+
+			&lt;div class=&quot;wrapper&quot;&gt;<br/>
+			&nbsp;&lt;div class=&quot;container&quot;&gt;<br/>
+			&nbsp;&nbsp;&lt;div class=&quot;row&quot;&gt;<br/>
+			&nbsp;&nbsp;&nbsp;... content goes here ...<br/>
+			&nbsp;&nbsp;&lt;/div&gt;<br/>
+			&nbsp;&lt;/div&gt;<br/>
+			&lt;/div&gt;<br/>
+
+		</span></p>
+
+		<h3>Media queries naming convention</h3>
 
 		<p>
 			With the standard Flux Layout configuration you get 4 breakpoints aimed
@@ -66,7 +101,19 @@
 			<span class="code">.mq-large-</span> Large, high resolution computer screens (like retina) and HD TV&#x27;s
 		</p>
 
+	</div>
+</article>
+
+
+<article class="wrapper flux-layout-test-01b">
+	<div class="container">
+
 		<h2 class="colour-accent">Media Query visibility</h2>
+
+		<p>
+			The section below demonstrates basic show and hide classes.
+			By using the classes indicated we can also see the breakpoints in action.
+		</p>
 
 		<section class="row clearfix">
 
@@ -128,9 +175,22 @@
 
 		</section>
 
+		<h2 class="colour-accent">Columns demo</span></h2>
 
-		<h2 class="colour-accent">Basic small screen <span class="mq-tiny-keep">media queries demo</span></h2>
+		<p>
+			There are <strong>2 kinds of column system</strong> in Flux layout 
+			- they begin with either <span class="code">box-</span> or <span class="code">column-</span>
+		</p>
 
+		<ul>
+			<li><span class="code">box-</span> classes have no gaps between them - they are the width of their parent container, divided up into various widths.</li>
+			<li><span class="code">column-</span> classes are traditional columns but smarter than most! There is NO 'last' class required (whoot!) to be applied to the last column, and no cheating on the maths, so no more wonky first or last width column.</li>
+		</ul>
+
+		<h2 class="colour-accent">Column system 1: box- class variable widths</h2>
+		<p>
+			By combining core box- classes with media query sizes gives you a powerful responsive system. You should note the classes that contain <span class="code">-min-</span> these will retain this size at all lower media query sizes.
+		</p>
 
 		<!-- Introduction 1 START -->
 		<section class="row basic-intro-1">
