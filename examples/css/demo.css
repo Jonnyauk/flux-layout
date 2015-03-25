@@ -62,7 +62,7 @@ article { padding: 10px 0 30px 0; }
 
 @media screen and ( max-width:480px ) {
 
-	* { font-size: 97%; }
+	html { font-size: 85%; }
 	.container { width: 100%; }
 	.code { display: block; }
 	header,
@@ -72,7 +72,7 @@ article { padding: 10px 0 30px 0; }
 
 @media screen and ( min-width:481px ) and ( max-width:768px ) {
 
-	* { font-size: 99%; }
+	html { font-size: 90%; }
 	.container { width: 90%; }
 	.code { display: block; }
 

@@ -94,7 +94,7 @@
 			at a broad screen types/user experiences, rather than individual devices.
 		</p>
 		<p>
-			All media query specific CSS classes are prepended with:<br/>
+			All media query specific CSS classes start with:<br/>
 			<span class="code">.mq-tiny-</span> Very small screens like portrait phones<br/>
 			<span class="code">.mq-small-</span> Lower spec landscape phones and some portrait tablets<br/>
 			<span class="code">.mq-medium-</span> Standard computers and landscape tablets<br/>
@@ -187,6 +187,10 @@
 			<li><span class="code">column-</span> classes are traditional columns but smarter than most! There is NO 'last' class required (whoot!) to be applied to the last column, and no cheating on the maths, so no more wonky first or last width column.</li>
 		</ul>
 
+		<p>
+			NOTE: Column classes currently do not have responsive equivalents, they are a work in progress. The issue is that when they hit breakpoints and reflow, you need different gutters (spacing) between the columns.
+		</p>
+
 		<h2 class="colour-accent">Column system 1: box- class variable widths</h2>
 		<p>
 			By combining core box- classes with media query sizes gives you a powerful responsive system. You should note the classes that contain <span class="code">-min-</span> these will retain this size at all lower media query sizes.
@@ -196,13 +200,13 @@
 		<section class="row basic-intro-1">
 
 			<h3 class="pad-small colour-accent flush-bottom">1) A row of two responsive divs</h3>
-			<p class="meta pad-small colour-accent">All divs have the same CSS classes applied: <span class="code">box-1-2 mq-small-min-1-1</span></p>
+			<p class="meta pad-small colour-accent">All divs have the same CSS classes applied: <span class="code">box-1-2 mq-small-min-box-1-1</span></p>
 
-			<div class="box-1-2 mq-small-min-1-1 pad-small colour-alt-1">
+			<div class="box-1-2 mq-small-min-box-1-1 pad-small colour-alt-1">
 				<p><span class="detail">1.1)</span> I am 1-2 size until the screen gets small, <span class="mq-tiny-keep">then I go to full width.</span></p>
 			</div>
 
-			<div class="box-1-2 mq-small-min-1-1 pad-small colour-alt-2">
+			<div class="box-1-2 mq-small-min-box-1-1 pad-small colour-alt-2">
 				<p><span class="detail">1.2)</span> I am 1-2 size until the screen gets small, <span class="mq-tiny-keep">then I go to full width.</span></p>
 			</div>
 
@@ -214,21 +218,21 @@
 		<section class="row basic-intro-2">
 
 			<h3 class="pad-small colour-accent flush-bottom">2) A row of four responsive divs</h3>
-			<p class="meta pad-small colour-accent">All divs have the same CSS classes applied: <span class="code">box-1-4 mq-small-1-2 mq-tiny-1-1</span></p>
+			<p class="meta pad-small colour-accent">All divs have the same CSS classes applied: <span class="code">box-1-4 mq-small-box-1-2 mq-tiny-1-1</span></p>
 
-			<div class="box-1-4 mq-small-1-2 mq-tiny-1-1 pad-small colour-alt-1">
+			<div class="box-1-4 mq-small-box-1-2 mq-tiny-box-1-1 pad-small colour-alt-1">
 				<p><span class="detail">2.1)</span> I am 1-4 size, at small I go to half size and at tiny I go full width.</p>
 			</div>
 
-			<div class="box-1-4 mq-small-1-2 mq-tiny-1-1 pad-small colour-alt-2">
+			<div class="box-1-4 mq-small-box-1-2 mq-tiny-box-1-1 pad-small colour-alt-2">
 				<p><span class="detail">2.2)</span> I am 1-4 size, at small I go to half size and at tiny I go full width.</p>
 			</div>
 
-			<div class="box-1-4 mq-small-1-2 mq-tiny-1-1 pad-small colour-alt-3">
+			<div class="box-1-4 mq-small-box-1-2 mq-tiny-box-1-1 pad-small colour-alt-3">
 				<p><span class="detail">2.3)</span> I am 1-4 size, at small I go to half size and at tiny I go full width.</p>
 			</div>
 
-			<div class="box-1-4 mq-small-1-2 mq-tiny-1-1 pad-small colour-alt-4">
+			<div class="box-1-4 mq-small-box-1-2 mq-tiny-box-1-1 pad-small colour-alt-4">
 				<p><span class="detail">2.4)</span> I am 1-4 size, at small I go to half size and at tiny I go full width.</p>
 			</div>
 
@@ -240,37 +244,37 @@
 		<section class="row basic-intro-3">
 
 			<h3 class="pad-small colour-accent flush-bottom">3) A row of eight responsive divs</h3>
-			<p class="meta pad-small colour-accent">All divs have the same CSS classes applied: <span class="code">box-1-4 mq-large-1-8 mq-tiny-1-2</span></p>
+			<p class="meta pad-small colour-accent">All divs have the same CSS classes applied: <span class="code">box-1-4 mq-large-box-1-8 mq-tiny-box-1-2</span></p>
 
-			<div class="box-1-4 mq-large-1-8 mq-tiny-1-2 pad-small colour-alt-1">
+			<div class="box-1-4 mq-large-box-1-8 mq-tiny-box-1-2 pad-small colour-alt-1">
 				<p><span class="detail">3.1)</span> I am 1-4 size, at large I go to 1-8 size and at tiny I go half width.</p>
 			</div>
 
-			<div class="box-1-4 mq-large-1-8 mq-tiny-1-2 pad-small colour-alt-2">
+			<div class="box-1-4 mq-large-box-1-8 mq-tiny-box-1-2 pad-small colour-alt-2">
 				<p><span class="detail">3.2)</span> I am 1-4 size, at large I go to 1-8 size and at tiny I go half width.</p>
 			</div>
 
-			<div class="box-1-4 mq-large-1-8 mq-tiny-1-2 pad-small colour-alt-3">
+			<div class="box-1-4 mq-large-box-1-8 mq-tiny-box-1-2 pad-small colour-alt-3">
 				<p><span class="detail">3.3)</span> I am 1-4 size, at large I go to 1-8 size and at tiny I go half width.</p>
 			</div>
 
-			<div class="box-1-4 mq-large-1-8 mq-tiny-1-2 pad-small colour-alt-4">
+			<div class="box-1-4 mq-large-box-1-8 mq-tiny-box-1-2 pad-small colour-alt-4">
 				<p><span class="detail">3.4)</span> I am 1-4 size, at large I go to 1-8 size and at tiny I go half width.</p>
 			</div>
 
-			<div class="box-1-4 mq-large-1-8 mq-tiny-1-2 pad-small colour-alt-1">
+			<div class="box-1-4 mq-large-box-1-8 mq-tiny-box-1-2 pad-small colour-alt-1">
 				<p><span class="detail">3.5)</span> I am 1-4 size, at large I go to 1-8 size and at tiny I go half width.</p>
 			</div>
 
-			<div class="box-1-4 mq-large-1-8 mq-tiny-1-2 pad-small colour-alt-2">
+			<div class="box-1-4 mq-large-box-1-8 mq-tiny-box-1-2 pad-small colour-alt-2">
 				<p><span class="detail">3.6)</span> I am 1-4 size, at large I go to 1-8 size and at tiny I go half width.</p>
 			</div>
 
-			<div class="box-1-4 mq-large-1-8 mq-tiny-1-2 pad-small colour-alt-3">
+			<div class="box-1-4 mq-large-box-1-8 mq-tiny-box-1-2 pad-small colour-alt-3">
 				<p><span class="detail">3.7)</span> I am 1-4 size, at large I go to 1-8 size and at tiny I go half width.</p>
 			</div>
 
-			<div class="box-1-4 mq-large-1-8 mq-tiny-1-2 pad-small colour-alt-4">
+			<div class="box-1-4 mq-large-box-1-8 mq-tiny-box-1-2 pad-small colour-alt-4">
 				<p><span class="detail">3.8)</span> I am 1-4 size, at large I go to 1-8 size and at tiny I go half width.</p>
 			</div>
 
