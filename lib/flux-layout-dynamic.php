@@ -14,37 +14,52 @@
  * THIS IS AN EXPERIMENTAL - NOT FOR PRODUCTION JUST YET!!
  *
  * @package Flux Layout
+ * @since Flux Layout v1
  *
  */
 
-/*** normalize.css v3.0.1 ***/
+/*** normalize.css v3.0.2 ***/
 
-html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}body{margin:0;}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;}audio,canvas,progress,video{display:inline-block;vertical-align:baseline;}audio:not([controls]){display:none;height:0;}[hidden],template{display:none;}a{background:transparent;}a:active,a:hover{outline:0;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}h1{font-size:2em;margin:0.67em 0;}mark{background:#ff0;color:#000;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}figure{margin:1em 40px;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}pre{overflow:auto;}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em;}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0;}button{overflow:visible;}button,select{text-transform:none;}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;}button[disabled],html input[disabled]{cursor:default;}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}input{line-height:normal;}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto;}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em;}legend{border:0;padding:0;}textarea{overflow:auto;}optgroup{font-weight:bold;}table{border-collapse:collapse;border-spacing:0;}td,th{padding:0;}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}body{margin:0;}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block;}audio,canvas,progress,video{display:inline-block;vertical-align:baseline;}audio:not([controls]){display:none;height:0;}[hidden],template{display:none;}a{background-color:transparent;}a:active,a:hover{outline:0;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}h1{font-size:2em;margin:0.67em 0;}mark{background:#ff0;color:#000;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}figure{margin:1em 40px;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}pre{overflow:auto;}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em;}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0;}button{overflow:visible;}button,select{text-transform:none;}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;}button[disabled],html input[disabled]{cursor:default;}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}input{line-height:normal;}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto;}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em;}legend{border:0;padding:0;}textarea{overflow:auto;}optgroup{font-weight:bold;}table{border-collapse:collapse;border-spacing:0;}td,th{padding:0;}
 
-/* Additional resets */
+/*** Additional resets ***/
 
+/* Force box-sizing */
 html { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
-
 *, *:before, *:after { box-sizing: inherit; }
+
+/* Just a few overrides for normalise.css */
+h1, h2, h3, h4, h5, h6 { margin-top: 0; -ms-word-wrap: break-word; word-wrap: break-word; }
+p { margin-top: 0; }
+ul, ol { padding-left: 0; }
+li { margin-left: 20px; }
+td,th { padding: 5px; }
 
 /*** Containers and alignment ***/
 
-.pad-tiny, .pad-small, .pad-medium, .pad-large { margin: 0; }
-.pad-tiny { padding: 5px; }
-.pad-small { padding: 10px; }
-.pad-medium { padding: 20px; }
-.pad-large { padding: 40px; }
+.pad-tiny { margin: 0; padding: 5px; }
+.pad-small { margin: 0; padding: 10px; }
+.pad-medium { margin: 0; padding: 20px; }
+.pad-large { margin: 0; padding: 40px; }
+
+.pad-left { margin: 0; padding: 0 0 0 20px; }
+.pad-right { margin: 0; padding: 0 20px 0 0; }
+.pad-left-right { margin: 0; padding: 0 20px 0 20px; }
+.pad-top { margin: 0; padding: 20px 0 0 0; }
+.pad-bottom { margin: 0; padding: 0 0 20px 0; }
+.pad-top-bottom { margin: 0; padding: 20px 0 20px 0; }
 
 .alignright, .align-right { float: right; margin: 0 0 5px 20px; }
 .alignleft, .align-left { float: left; margin: 0 20px 5px 0; }
 .aligncenter, .align-center { text-align: center; margin: 5px auto; }
+.content-left { text-align: left; }
+.content-center { text-align: center; }
+.content-right { text-align: right; }
+
 .first, .flush-left { margin-left: 0; padding-left: 0; }
 .last, .flush-right { margin-right: 0; padding-right: 0; }
 .top, .flush-top { margin-top: 0; padding-top: 0; }
 .bottom, .flush-bottom { margin-bottom: 0; padding-bottom: 0; }
-.content-left { text-align: left; }
-.content-center { text-align: center; }
-.content-right { text-align: right; }
 
 /**
  * Wonderflux v1.x legacy clearfix
@@ -58,11 +73,11 @@ html { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: 
 .clear, .clearfix:after, .container:after, .row:after { clear:both; }
 .clearfix:before, .clearfix:after, .container:before, .container:after, .row:before, .row:after { content:""; display:table; }
 
-/* Viewport height */
+/*** Viewport height ***/
 
 .height-full { height: 100vh; }
 .height-half { height: 50vh; }
-.height-third { height: 33.3333h; }
+.height-third { height: 33.3333vh; }
 .height-quarter { height: 25vh; }
 .height-fifth { height: 20vh; }
 .height-sixth { height: 16.6666vh; }
@@ -105,19 +120,18 @@ ol.commentlist p { margin-bottom: 0; }
 
 .sticky { font-weight: bold; }
 
-/*** Flux Layout ***/
-
 <?php
 
 /* DO IT! Just for testing and development */
 $wf_grid = new wflux_layout;
-$wf_grid->grid_containers();
-//$wf_grid->grid_blocks();
-//$wf_grid->grid_space_loops();
-//$wf_grid->grid_push_loops();
-$wf_grid->grid_relative_loops();
-$wf_grid->grid_columns();
-$wf_grid->grid_media_queries();
+$wf_grid->containers();
+//$wf_grid->blocks();
+//$wf_grid->space_loops();
+//$wf_grid->push_loops();
+$wf_grid->relative_loops();
+$wf_grid->columns();
+$wf_grid->media_queries_visibility();
+$wf_grid->media_queries();
 
 /**
  * Percent based CSS and media query layout generator
@@ -149,15 +163,15 @@ class wflux_layout {
 	function __construct() {
 
 		// Cleanup all data ready to be used
-		$this->width_units = ( $_GET['wu'] == 'percent' ) ? '%' : 'px';
+		$this->width_units = ( isset($_GET['wu']) && $_GET['wu'] == 'percent' ) ? '%' : 'px';
 
 		if ($this->width_units == 'px') {
-			$this->width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 4000 ) ? $_GET['w'] : 950;
+			$this->width = ( isset($_GET['w']) && is_numeric( $_GET['w'] ) && $_GET['w'] <= 4000 ) ? $_GET['w'] : 950;
 		} else {
-			$this->width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
+			$this->width = ( isset($_GET['w']) && is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
 		}
 
-		$this->columns_basic = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 16;
+		$this->columns_basic = ( isset($_GET['c']) && is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 16;
 		$this->class_prepend = ( !isset($this->class_prepend) ) ? 'box-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->class_prepend) );
 		$this->columns_prepend = ( !isset($this->columns_prepend) ) ? 'column-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->columns_prepend) );
 
@@ -183,6 +197,11 @@ class wflux_layout {
 		}
 
 		$this->mq_box_sizes = array(1,2,4,5,8,10);
+		// Add core column option to media query array for output
+		if ( !in_array($this->columns_basic, $this->mq_box_sizes) ){
+			array_unshift( $this->mq_box_sizes, $this->columns_basic );
+			sort($this->mq_box_sizes);
+		}
 		$this->columns_gutter = 2;
 
 		if ( isset( $_GET['mq_cols'] ) && is_array($_GET['mq_cols']) ){
@@ -269,7 +288,7 @@ class wflux_layout {
 	/**
 	 * Outputs main site .container and .row classes
 	 */
-	function grid_containers() {
+	function containers() {
 
 		echo '/********** Core containers **********/' . $this->minify_2 . $this->minify;
 
@@ -302,7 +321,7 @@ class wflux_layout {
 	 * Outputs percent widths for blocks
 	 * REMOVED FOR THE MOMENT - avoid alternative CSS definitions and repeated code
 	 */
-	//function grid_blocks() {
+	//function blocks() {
 
 		//echo '/********** Grid boxes **********/' . $this->minify_2;
 
@@ -320,7 +339,7 @@ class wflux_layout {
 	/**
 	 * Outputs columns rules
 	 */
-	function grid_columns() {
+	function columns() {
 
 		echo '/********** Traditional columns **********/' . $this->minify_2 . $this->minify;
 
@@ -368,7 +387,7 @@ class wflux_layout {
 	/**
 	 * Outputs margin + padding rules
 	 */
-	function grid_mover( $type, $definition, $direction ) {
+	function mover( $type, $definition, $direction ) {
 
 		$negpos = ( $type == 'push' ) ? '-' : '';
 		$css_type = ( $type == 'push' ) ? 'margin' : 'padding';
@@ -383,18 +402,18 @@ class wflux_layout {
 
 	}
 
-	function grid_space_loops() {
+	function space_loops() {
 
-		$this->grid_mover( 'space', $this->class_space_left, 'l' );
-		$this->grid_mover( 'space', $this->class_space_right, 'r' );
+		$this->mover( 'space', $this->class_space_left, 'l' );
+		$this->mover( 'space', $this->class_space_right, 'r' );
 		echo $this->minify;
 
 	}
 
-	function grid_push_loops() {
+	function push_loops() {
 
-		$this->grid_mover( 'push', $this->class_move_left, 'l' );
-		$this->grid_mover( 'push', $this->class_move_right, 'r' );
+		$this->mover( 'push', $this->class_move_left, 'l' );
+		$this->mover( 'push', $this->class_move_right, 'r' );
 		echo $this->minify;
 
 	}
@@ -403,7 +422,7 @@ class wflux_layout {
 	 * Outputs relative sized CSS
 	 * $sizes = array of integers representing what sizes to output
 	 */
-	function grid_relative_loops() {
+	function relative_loops() {
 
 		if ( !is_array($this->relative) ) return;
 
@@ -411,7 +430,7 @@ class wflux_layout {
 
 		// CSS attribute wildcard selectors
 		echo 'div[class*="' . $this->class_prepend . '"] { '
-		. 'float:left; margin: 0; }'
+		. 'float:left; }'
 		. $this->minify_2;
 
 		foreach ( $this->relative as $size ) {
@@ -455,6 +474,104 @@ class wflux_layout {
 	}
 
 	/**
+	 * Media queries output for general rules
+	 * 4 definitions:
+	 * rwd-tiny Tiny screens - small portrait phones
+	 * rwd-small Small screens - Lower spec landscape phones and some portrait tablets
+	 * rwd-medium Medium screens - Standard computers and landscape tablets
+	 * rwd-large Large screens - Swanky hi-res screens
+	 */
+	function media_queries_visibility() {
+
+		// Array of just definitions - used for -hide-except rules
+		$all_defs = array();
+
+		foreach ( $this->mq_config as $size ) {
+
+			$all_defs[] = $size['def']; // Used to exclude in hider media queries
+
+			if ( isset($size['min']) ){
+				$sizes_min[] = $size['min']; // Used to exclude in hider media queries
+			}
+
+			if ( isset($size['max']) ){
+				$sizes_max[] = $size['max']; // Used to exclude in hider media queries
+			}
+			
+		}
+
+		$all_defs_count = count( $all_defs );
+
+		echo '/********** Visibility Media Queries **********/' . $this->minify_2 . $this->minify;
+
+		$sizes_count = 0;
+
+		foreach ( $this->mq_config as $size ) {
+
+			$size_queries = '';
+
+			$units = ( !$size['units'] && $size['units'] == 'px' ) ? 'px' : substr( $size['units'], 0, 2 );
+			//TODO: Extra checks here - need to ensure proper min/max figures
+			$min = ( !isset($size['min']) ) ? '' : 'and (min-width:' . $size['min'] . $units . ')';
+			$max = ( !isset($size['max']) ) ? '' : 'and (max-width:' . $size['max'] . $units . ')';
+
+			// Setup size definition string
+			if ( $sizes_count == 0 ) {
+				$size_queries = 'and (max-width:' . min( array_merge($sizes_min, $sizes_max) ) . $units . ')';
+			} else {
+				$size_queries = ( !empty($min) ) ? $min : $max;
+			}
+
+			// Open media query
+			echo '/* ' . $size['def'] . ': ' . $size['note'] . ' */' . $this->minify
+			. '@media screen ' . $size_queries . ' {' . $this->minify;
+
+			for ( $limit=0; $limit <= $sizes_count; $limit++ ) {
+				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
+				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
+				echo '.' . $all_defs[$limit] . '-min-show';
+				echo ( $limit == $sizes_count ) ? ' ' : ', ';
+				echo ( $limit == $sizes_count ) ? '{ display:block; }' . "\n" : '';
+
+			}
+
+			for ( $limit=($all_defs_count-1); $limit >= ($sizes_count+1); $limit-- ) {
+				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
+				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
+				echo '.' . $all_defs[$limit] . '-min-hide';
+				echo ( $limit == ($sizes_count+1) ) ? ' ' : ', ';
+				echo ( $limit == ($sizes_count+1) ) ? '{ display:block; }' . "\n" : '';
+
+			}
+
+			for ( $limit=($all_defs_count-1); $limit >= ($sizes_count+1); $limit-- ) {
+				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
+				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
+				echo '.' . $all_defs[$limit] . '-min-show';
+				echo ( $limit == ($sizes_count+1) ) ? ' ' : ', ';
+				echo ( $limit == ($sizes_count+1) ) ? '{ display:none; }' . "\n" : '';
+
+			}
+
+			for ( $limit=0; $limit <= $sizes_count; $limit++ ) {
+				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
+				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
+				echo '.' . $all_defs[$limit] . '-min-hide';
+				echo ( $limit == $sizes_count ) ? ' ' : ', ';
+				echo ( $limit == $sizes_count ) ? '{ display:none; }' . "\n" : '';
+
+			}
+
+			// Close media query
+			echo '}' . $this->minify_2 . $this->minify;
+
+			$sizes_count++;
+
+		}
+
+	}
+
+	/**
 	 * Media queries output for different sized screens
 	 * 4 definitions:
 	 * rwd-tiny Tiny screens - small portrait phones
@@ -462,36 +579,44 @@ class wflux_layout {
 	 * rwd-medium Medium screens - Standard computers and landscape tablets
 	 * rwd-large Large screens - Swanky hi-res screens
 	 */
-	function grid_media_queries() {
+	function media_queries() {
 
 		// Array of just definitions - used for -hide-except rules
 		$all_defs = array();
 
 		foreach ( $this->mq_config as $size ) {
+
 			$all_defs[] = $size['def']; // Used to exclude in hider media queries
-			$sizes_min[] = $size['min']; // Used to exclude in hider media queries
-			$sizes_max[] = $size['max']; // Used to exclude in hider media queries
+
+			if ( isset($size['min']) ){
+				$sizes_min[] = $size['min']; // Used to exclude in hider media queries
+			}
+
+			if ( isset($size['max']) ){
+				$sizes_max[] = $size['max']; // Used to exclude in hider media queries
+			}
+			
 		}
 
 		$all_defs_count = count( $all_defs );
 
-		echo '/********** Media Queries **********/' . $this->minify_2 . $this->minify;
+		echo '/********** Layout Media Queries **********/' . $this->minify_2 . $this->minify;
 
 		// CSS attribute wildcard selectors
 		$w_count = 2;
 		foreach ( $all_defs as $def ) {
 			$seperator = ( ($all_defs_count) == $w_count-1 ) ? ' ' : ', ';
 			//echo '.' . $def . '-' . $prepend;
-			echo 'div[class*="' . $def . '-' . $prepend . '"]' . $seperator;
+			echo 'div[class*="' . $def . '-' . $this->class_prepend . '"]' . $seperator;
 			$w_count = ( $def != $size['def'] ) ? $w_count+1 : $w_count;
 		}
 		echo '{ float:left; }' . $this->minify_2;
 
 		foreach ( $this->mq_config as $size ) {
 
-			$units = ( !$size[units] && $size[units] == 'px' ) ? 'px' : substr( $size[units], 0, 2 );
-			$min = ( !$size[min] && !is_numeric($size[min]) ) ? '' : 'and ( min-width:' . $size[min] . $units . ' )';
-			$max = ( !$size[max] && !is_numeric($size[max]) ) ? '' : 'and ( max-width:' . $size[max] . $units . ' )';
+			$units = ( !isset($size['units']) ) ? 'px' : substr( $size['units'], 0, 2 );
+			$min = ( !isset($size['min']) ) ? '' : 'and (min-width:' . $size['min'] . $units . ')';
+			$max = ( !isset($size['max']) ) ? '' : 'and (max-width:' . $size['max'] . $units . ')';
 			$size_queries = ( !empty($min) && !empty($max) ) ? $min . ' ' . $max : $min . $max;
 
 			// Open media query
@@ -520,10 +645,10 @@ class wflux_layout {
 				if ( intval($size_r) < 101 ) {
 					for ( $limit=1; $limit < $size_r || $limit == 1; $limit++ ) {
 
-						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r;
+						echo ' .' . $size['def'] . '-' . $this->class_prepend . $limit . '-' . $size_r;
 
 						for ( $limit_def=0; $limit_def < ($all_defs_count); $limit_def++ ) {
-							echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-min-' . $limit . '-' . $size_r : '';
+							echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-min-' . $this->class_prepend . $limit . '-' . $size_r : '';
 						}
 
 						echo ' { width:' . ( 100/$size_r ) * $limit . '%; ';
@@ -534,8 +659,14 @@ class wflux_layout {
 				}
 			}
 
-			echo ' /***** Columns *****/' . $this->minify;
+			/*
+			Responsive columns removed for the moment
+			Need to work out how to deal with gutter (maybe need additional .first override + .mq-{size}-gutter)
+			 */
 
+			//echo ' /***** Columns *****/' . $this->minify;
+
+			/*
 			// Column size loops
 			foreach ( $this->mq_column_sizes as $size_c ) {
 				if ( intval($size_c) < 101 ) {
@@ -558,6 +689,7 @@ class wflux_layout {
 
 				}
 			}
+			*/
 
 			// Close media query
 			echo '}' . $this->minify_2;
