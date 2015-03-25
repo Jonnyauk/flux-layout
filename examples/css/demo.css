@@ -14,7 +14,9 @@
 
 /* @group Typography */
 
-h1 { color: #18aca2; }
+h1 { color: #18aca2;
+	margin-top: 30px;
+}
 h2,
 h3,
 p { color: #40466a; }
@@ -53,7 +55,10 @@ article { background-color: #ffffff; }
 
 /* @group Main content */
 
-article { padding: 10px 0 30px 0; }
+article { padding: 30px 0 0; }
+.demo-block {
+	margin-bottom: 25px;
+}
 
 /* @end */
 

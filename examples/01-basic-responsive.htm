@@ -9,17 +9,20 @@
 	<meta name="description" content="Flux Layout demonstration">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- 1) Flux Layout CSS - readable non-compressed version
-	Change path to: "../lib/flux-layout-static.css"
+	<!-- 1) Flux Layout CSS - compressed production version
+	Change path to: "../lib/flux-layout-static-min.css"
 	-->
 
 	<!-- 2) Flux Layout Dynamic - Experimental dynamic PHP generated responsive grid system
-	Change path to: "../lib/flux-layout-dynamic.php?&amp;w=80&amp;c=16"
-	w = width of main container
-	c = number of columns
+	Change path to: "../lib/flux-layout-dynamic.php?&amp;w=80&amp;wu=percent&amp;p=middle&amp;sbp=left&amp;c=16"
+	w   = width of main container
+	wu  = percent or pixels
+	p   = position of main contaner
+	sbp = sidebar position
+	c   = number of columns
 	-->
 
-	<!-- Flux Layout minified (compressed production version) -->
+	<!-- Flux Layout -->
 	<link rel="stylesheet" href="../lib/flux-layout-static.css">
 	<!-- Additional demo styling - not required for Flux Layout -->
 	<link rel="stylesheet" href="css/demo.css">
@@ -36,9 +39,9 @@
 <header class="wrapper primary-title">
 	<div class="container">
 
-		<div class="row pad-small">
+		<div class="row">
 
-			<h1 class="flush-bottom">Flux Layout demonstration</h1>
+			<h1>Flux Layout demonstration</h1>
 			<h2>A responsive layout demo for the Flux Layout CSS framework.</h2>
 			<h3>Flux Layout is included in the <a href="https://github.com/Jonnyauk/flux-layout">Wonderflux theme framework</a>. Visit the <a href="https://github.com/Jonnyauk/flux-layout">Github project page</a> for more information.</h3>
 
@@ -143,7 +146,7 @@
 
 		</section>
 
-		<section class="row clearfix">
+		<section class="row clearfix demo-block">
 
 			<div class="box-1-1 pad-small colour-alt-1">
 				<p class="mq-tiny-only">&gt; &gt; SHOW FOR TINY &lt; &lt;</p>
@@ -241,7 +244,7 @@
 
 
 		<!-- Introduction 3 START -->
-		<section class="row basic-intro-3">
+		<section class="row basic-intro-3 demo-block">
 
 			<h3 class="pad-small colour-accent flush-bottom">3) A row of eight responsive divs</h3>
 			<p class="meta pad-small colour-accent">All divs have the same CSS classes applied: <span class="code">box-1-4 mq-large-box-1-8 mq-tiny-box-1-2</span></p>
@@ -285,7 +288,7 @@
 
 		<p>Basic, non-responsive demo</p>
 
-		<section class="row column clearfix">
+		<section class="row column demo-block">
 
 			<div class="column-1-16 colour-alt-1">
 				<p>1-1</p>
@@ -301,7 +304,7 @@
 
 		</section>
 
-		<section class="row column clearfix">
+		<section class="row column demo-block">
 
 			<div class="column-3-16 colour-alt-3">
 				<p>3-16</p>
@@ -317,7 +320,7 @@
 
 		</section>
 
-		<section class="row column clearfix">
+		<section class="row column demo-block">
 
 			<div class="column-5-16 colour-alt-1">
 				<p>5-16</p>
@@ -338,7 +341,7 @@
 
 		<p>Basic, non-responsive demo</p>
 
-		<section class="row column clearfix">
+		<section class="row column demo-block">
 
 			<div class="column-1-10 colour-alt-1">
 				<p>1-10</p>
@@ -354,7 +357,7 @@
 
 		</section>
 
-		<section class="row column clearfix">
+		<section class="row column demo-block">
 
 			<div class="column-3-10 colour-alt-3">
 				<p>3-10</p>
