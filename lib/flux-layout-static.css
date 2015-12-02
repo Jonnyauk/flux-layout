@@ -221,6 +221,94 @@ div[class*="box-"] { float:left; }
 .box-15-16, .box-15, .box-15-sixteenth { width:93.75%; }
 
 
+/********** Push and pull **********/
+
+
+.push-1-2 { margin-left:50%; }
+.pull-1-2 { margin-left:-50%; }
+
+.push-1-4 { margin-left:25%; }
+.push-2-4 { margin-left:50%; }
+.push-3-4 { margin-left:75%; }
+.pull-1-4 { margin-left:-25%; }
+.pull-2-4 { margin-left:-50%; }
+.pull-3-4 { margin-left:-75%; }
+
+.push-1-5 { margin-left:20%; }
+.push-2-5 { margin-left:40%; }
+.push-3-5 { margin-left:60%; }
+.push-4-5 { margin-left:80%; }
+.pull-1-5 { margin-left:-20%; }
+.pull-2-5 { margin-left:-40%; }
+.pull-3-5 { margin-left:-60%; }
+.pull-4-5 { margin-left:-80%; }
+
+.push-1-8 { margin-left:12.5%; }
+.push-2-8 { margin-left:25%; }
+.push-3-8 { margin-left:37.5%; }
+.push-4-8 { margin-left:50%; }
+.push-5-8 { margin-left:62.5%; }
+.push-6-8 { margin-left:75%; }
+.push-7-8 { margin-left:87.5%; }
+.pull-1-8 { margin-left:-12.5%; }
+.pull-2-8 { margin-left:-25%; }
+.pull-3-8 { margin-left:-37.5%; }
+.pull-4-8 { margin-left:-50%; }
+.pull-5-8 { margin-left:-62.5%; }
+.pull-6-8 { margin-left:-75%; }
+.pull-7-8 { margin-left:-87.5%; }
+
+.push-1-10 { margin-left:10%; }
+.push-2-10 { margin-left:20%; }
+.push-3-10 { margin-left:30%; }
+.push-4-10 { margin-left:40%; }
+.push-5-10 { margin-left:50%; }
+.push-6-10 { margin-left:60%; }
+.push-7-10 { margin-left:70%; }
+.push-8-10 { margin-left:80%; }
+.push-9-10 { margin-left:90%; }
+.pull-1-10 { margin-left:-10%; }
+.pull-2-10 { margin-left:-20%; }
+.pull-3-10 { margin-left:-30%; }
+.pull-4-10 { margin-left:-40%; }
+.pull-5-10 { margin-left:-50%; }
+.pull-6-10 { margin-left:-60%; }
+.pull-7-10 { margin-left:-70%; }
+.pull-8-10 { margin-left:-80%; }
+.pull-9-10 { margin-left:-90%; }
+
+.push-1-16 { margin-left:6.25%; }
+.push-2-16 { margin-left:12.5%; }
+.push-3-16 { margin-left:18.75%; }
+.push-4-16 { margin-left:25%; }
+.push-5-16 { margin-left:31.25%; }
+.push-6-16 { margin-left:37.5%; }
+.push-7-16 { margin-left:43.75%; }
+.push-8-16 { margin-left:50%; }
+.push-9-16 { margin-left:56.25%; }
+.push-10-16 { margin-left:62.5%; }
+.push-11-16 { margin-left:68.75%; }
+.push-12-16 { margin-left:75%; }
+.push-13-16 { margin-left:81.25%; }
+.push-14-16 { margin-left:87.5%; }
+.push-15-16 { margin-left:93.75%; }
+.pull-1-16 { margin-left:-6.25%; }
+.pull-2-16 { margin-left:-12.5%; }
+.pull-3-16 { margin-left:-18.75%; }
+.pull-4-16 { margin-left:-25%; }
+.pull-5-16 { margin-left:-31.25%; }
+.pull-6-16 { margin-left:-37.5%; }
+.pull-7-16 { margin-left:-43.75%; }
+.pull-8-16 { margin-left:-50%; }
+.pull-9-16 { margin-left:-56.25%; }
+.pull-10-16 { margin-left:-62.5%; }
+.pull-11-16 { margin-left:-68.75%; }
+.pull-12-16 { margin-left:-75%; }
+.pull-13-16 { margin-left:-81.25%; }
+.pull-14-16 { margin-left:-87.5%; }
+.pull-15-16 { margin-left:-93.75%; }
+
+
 /********** Traditional columns **********/
 
 

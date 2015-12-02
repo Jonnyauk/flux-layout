@@ -170,13 +170,13 @@ $wf_grid->containers();
 //$wf_grid->space_loops();
 //$wf_grid->push_loops();
 $wf_grid->relative_loops();
+$wf_grid->relative_push_pull();
 $wf_grid->columns();
 $wf_grid->media_queries_visibility();
 $wf_grid->media_queries();
 
 /**
  * Percent based CSS and media query layout generator
- * @since 2.0
  */
 class wflux_layout {
 
@@ -515,6 +515,44 @@ class wflux_layout {
 	}
 
 	/**
+	 * Outputs relative sized CSS
+	 * $sizes = array of integers representing what sizes to output
+	 */
+	function relative_push_pull() {
+
+		if ( !is_array($this->relative) ) return;
+
+		echo '/********** Push and pull **********/' . $this->minify . $this->minify_2;
+
+		foreach ( $this->relative as $size ) {
+
+			if ( intval($size) > 1 && intval($size) < 101 ) {
+
+				$nice_size = $this->nice_size_def($size);
+
+					for ( $limit=1; $limit < $size; $limit++ ) {
+
+						echo '.push-' . $limit . '-' . $size . ' { margin-left:' . $limit * ( 100 / $size ) . '%; }' . $this->minify;
+
+					}
+
+					for ( $limit=1; $limit < $size; $limit++ ) {
+
+						echo '.pull-' . $limit . '-' . $size . ' { margin-left:-' . $limit * ( 100 / $size ) . '%; }' . $this->minify;
+
+					}
+
+				echo $this->minify;
+
+			}
+
+		}
+
+		echo $this->minify;
+
+	}
+
+	/**
 	 * Media queries output for general rules
 	 * 4 definitions:
 	 * rwd-tiny Tiny screens - small portrait phones
@@ -538,7 +576,7 @@ class wflux_layout {
 			if ( isset($size['max']) ){
 				$sizes_max[] = $size['max']; // Used to exclude in hider media queries
 			}
-			
+
 		}
 
 		$all_defs_count = count( $all_defs );
@@ -636,7 +674,7 @@ class wflux_layout {
 			if ( isset($size['max']) ){
 				$sizes_max[] = $size['max']; // Used to exclude in hider media queries
 			}
-			
+
 		}
 
 		$all_defs_count = count( $all_defs );
