@@ -3,7 +3,7 @@ Flux Layout
 
 **Generates a dynamic responsive CSS grid - any columns, any width - in less than 6k!**
 
-Creatives don't like being dicated to or told how many columns their layout has to have or having a whole bunch of other junk CSS that you have to load and overload. Flux layout solves this - it's a fully dynamic responsive layout system with extensive built-in media queries and logically named CSS classes.
+Creatives don't like being dictated to or told how many columns their layout has to have or having a whole bunch of other junk CSS that you have to load and overload. Flux layout solves this - it's a fully dynamic responsive layout system with extensive built-in media queries and logically named CSS classes.
 
 Dynamic generation or ultra compact static - the choice is yours!
 ----------------------------------------------------------------------
