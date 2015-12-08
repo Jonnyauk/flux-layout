@@ -107,7 +107,7 @@ img.size-full, img.size-large, img.wp-post-image { height: auto; max-width: 100%
     position: relative;
     padding-bottom: 61%;
     overflow: hidden;
-	margin-bottom: 1.5em;
+    margin-bottom: 1.5em;
 }
  
 .responsive-embed.media-slideshare {
@@ -115,29 +115,29 @@ img.size-full, img.size-large, img.wp-post-image { height: auto; max-width: 100%
     position: relative;
     padding-bottom: 79.5%;
     overflow: hidden;
-	margin-bottom: 1.5em;
+    margin-bottom: 1.5em;
 }
 
 .responsive-embed.media-soundcloud {
     position: relative;
     padding-bottom: 90%;
     overflow: hidden;
-	margin-bottom: 1.5em;
+    margin-bottom: 1.5em;
 }
 
 .responsive-embed.media-soundcloud-small {
     position: relative;
     padding-bottom: 13%;
     overflow: hidden;
-	margin-bottom: 1.5em;
+    margin-bottom: 1.5em;
 }
 
 .responsive-embed iframe {
-	position: absolute;
-	top:0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -159,6 +159,36 @@ ol.commentlist p { margin-bottom: 0; }
 /* Posts */
 
 .sticky { font-weight: bold; }
+
+/* Text meant only for screen readers. */
+
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+.screen-reader-text:focus {
+background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000; /* Above WP toolbar. */
+}
 
 /********** Core containers **********/
 
