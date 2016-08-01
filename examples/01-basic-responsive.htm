@@ -9,24 +9,37 @@
 	<meta name="description" content="Flux Layout demonstration">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- 1) Flux Layout CSS - compressed production version
-	Change main Flux Layout stylesheet path to "../lib/flux-layout-static-min.css"
-	-->
+	<!--
+	How to use Flux Layout:
 
-	<!-- 2) Flux Layout Dynamic - Experimental dynamic PHP generated responsive grid system
-	Change path to: "../lib/flux-layout-dynamic.php?&amp;w=80&amp;wu=percent&amp;p=middle&amp;sbp=left&amp;c=16"
-	w   = width of main container
-	wu  = percent or pixels
-	p   = position of main contaner
-	sbp = sidebar position
-	c   = number of columns
+	1) Flux Layout CSS - uncompressed development version (readable)
+	Change Flux Layout stylesheet path to:
+	"../lib/flux-layout-static.css"
+
+	2) Flux Layout CSS - compressed production version
+	Change Flux Layout stylesheet path to:
+	"../lib/flux-layout-static-min.css"
+
+	3) Flux Layout Dynamic - Dynamic PHP generated responsive grid system
+	Change Flux Layout stylesheet path to: "../lib/flux-layout-dynamic.php?&amp;w=80&amp;wu=percent&amp;p=middle&amp;sbp=left&amp;c=16&amp;g=2&amp;r=2-4-10&amp;mqmin=y"
+
+	Use the following URL parameters to generate your custom responsive grid system:
+	w		= width of main container
+	wu		= percent or pixels
+	p 		= position of main container
+	sbp	= sidebar position
+	c		= number of columns
+	g		= gutter between columns (%)
+	r		= range of additional column setups - defined as a hyphen (-) separated list of numbers, eg 2-4-5-8
+	mqmin	= remove rarely used rules in media queries - recommended - reduces output by over 50%!
 	-->
 
 	<!-- Flux Layout -->
-	<link rel="stylesheet" href="../lib/flux-layout-static.css">
+	<link rel="stylesheet" href="../lib/flux-layout-dynamic.php?&amp;w=80&amp;wu=percent&amp;p=middle&amp;sbp=left&amp;c=16&amp;g=2&amp;r=2-4-10&amp;mqmin=y">
 	<!-- Additional demo styling - not required for Flux Layout -->
 	<link rel="stylesheet" href="css/demo.css">
 
+	<!-- Not essential, but usefull! -->
 	<script src="../js/modernizr-2.8.3.min.js"></script>
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -57,9 +70,9 @@
 
 		<h3>Flux Layout can be used in a number of different ways:</h3>
 		<ol>
-			<li>As a static CSS file</li>
-			<li>Dynamically generated on every page visit, with your own grid/naming configration and more!</li>
-			<li>As a WordPress theme using the <a href="http://wonderflux.com">Wonderflux theme framework</a></li>
+			<li>As a static CSS file.</li>
+			<li>Dynamically generated on every page visit, with your own custom (multiple!) grid configration.</li>
+			<li>By creating a child theme using the free <a href="http://wonderflux.com">Wonderflux theme framework</a>.</li>
 		</ol>
 
 		<h3>First things first...</h3>
@@ -181,7 +194,7 @@
 		<h2 class="colour-accent">Columns demo</span></h2>
 
 		<p>
-			There are <strong>2 kinds of column system</strong> in Flux layout 
+			There are <strong>2 kinds of column system</strong> in Flux layout
 			- they begin with either <span class="code">box-</span> or <span class="code">column-</span>
 		</p>
 
@@ -288,7 +301,7 @@
 
 		<p>Basic, non-responsive demo</p>
 
-		<section class="row column demo-block">
+		<section class="row-column demo-block">
 
 			<div class="column-1-16 colour-alt-1">
 				<p>1-1</p>
@@ -304,7 +317,7 @@
 
 		</section>
 
-		<section class="row column demo-block">
+		<section class="row-column demo-block">
 
 			<div class="column-3-16 colour-alt-3">
 				<p>3-16</p>
@@ -320,7 +333,7 @@
 
 		</section>
 
-		<section class="row column demo-block">
+		<section class="row-column demo-block">
 
 			<div class="column-5-16 colour-alt-1">
 				<p>5-16</p>
@@ -341,7 +354,7 @@
 
 		<p>Basic, non-responsive demo</p>
 
-		<section class="row column demo-block">
+		<section class="row-column demo-block">
 
 			<div class="column-1-10 colour-alt-1">
 				<p>1-10</p>
@@ -357,7 +370,7 @@
 
 		</section>
 
-		<section class="row column demo-block">
+		<section class="row-column demo-block">
 
 			<div class="column-3-10 colour-alt-3">
 				<p>3-10</p>

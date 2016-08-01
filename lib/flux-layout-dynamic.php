@@ -2,19 +2,17 @@
 /**
  *
  * Flux Layout
+ * Version 2.0beta
  *
- * A dynamic percentage based CSS layout engine - https://github.com/Jonnyauk/flux-layout
- * Built for the Wonderflux WordPress theme framework - https://github.com/Jonnyauk/Wonderflux
+ * A dynamic percentage based layout engine - https://github.com/Jonnyauk/flux-layout
+ * Built for the Wonderflux theme framework - https://github.com/Jonnyauk/Wonderflux
  *
  * Free to use on any project and released under the GPLv2 license
- * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to:
+ * Created by Jonny Allbut Copyright (c)2014-2016. Exceptions include, but are not limited to:
  * Normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
- *
- * !DANGER WILL ROBINSON!
- * THIS IS AN EXPERIMENTAL - NOT FOR PRODUCTION JUST YET!!
+ * How To Clear Floats Without Structural Markup by PiE
  *
  * @package Flux Layout
- * @since Flux Layout v1
  *
  */
 
@@ -61,17 +59,10 @@ td,th { padding: 5px; }
 .top, .flush-top { margin-top: 0; padding-top: 0; }
 .bottom, .flush-bottom { margin-bottom: 0; padding-bottom: 0; }
 
-/**
- * Wonderflux v1.x legacy clearfix
- * Clearing floats without extra markup
- * Based on How To Clear Floats Without Structural Markup
- * by PiE [http://www.positioniseverything.net/easyclearing.html]
- *
- */
-.clearfix:after, .container:after, .row:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
-.clearfix, .container, .row { display: block; }
-.clear, .clearfix:after, .container:after, .row:after { clear:both; }
-.clearfix:before, .clearfix:after, .container:before, .container:after, .row:before, .row:after { content:""; display:table; }
+.clearfix:after, .container:after, .row:after, .row-column:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
+.clearfix, .container, .row, .row-column { display: block; }
+.clear, .clearfix:after, .container:after, .row:after, .row-column:after { clear:both; }
+.clearfix:before, .clearfix:after, .container:before, .container:after, .row:before, .row:after, .row-column:before, .row-column:after { content:""; display:table; }
 
 /*** Viewport height ***/
 
@@ -110,7 +101,7 @@ img.size-full, img.size-large, img.wp-post-image { height: auto; max-width: 100%
     overflow: hidden;
 	margin-bottom: 1.5em;
 }
- 
+
 .responsive-embed.media-slideshare {
     height: 0;
     position: relative;
@@ -193,20 +184,21 @@ background-color: #f1f1f1;
 
 <?php
 
-/* DO IT! Just for testing and development */
+/* DO IT! Will make smarter in the future! */
 $wf_grid = new wflux_layout;
 $wf_grid->containers();
 //$wf_grid->blocks();
 //$wf_grid->space_loops();
 //$wf_grid->push_loops();
 $wf_grid->relative_loops();
-$wf_grid->relative_push_pull();
 $wf_grid->columns();
-$wf_grid->media_queries_visibility();
+$wf_grid->relative_push_pull();
+$wf_grid->media_queries_utility();
 $wf_grid->media_queries();
 
 /**
  * Percent based CSS and media query layout generator
+ * @since 2.0
  */
 class wflux_layout {
 
@@ -215,10 +207,12 @@ class wflux_layout {
 	protected $columns_basic;		// INPUT - Number of basic (no gutter) columns in layout
 	protected $class_prepend;		// INPUT - Prepend all CSS main selectors
 	protected $columns_prepend;		// INPUT - Prepend all CSS column selectors
-	protected $columns;				// ARRAY - Advanced columns with gutters
-	protected $columns_gutter;		// INPUT - Target gutter (%)
+	protected $range;				// INPUT - Hyphen (-) delimited string of sizing definitions to generate output
+	protected $mq_min;				// INPUT - More than halfs size of output by removing push and pull classes from media queries - may be added to in the future!
+	protected $columns;				// ARRAY - Traditional columns with gutters
+	protected $columns_gutter;		// INPUT - Columns gutter (%)
 	protected $relative;			// ARRAY - General relative sizes
-	protected $mq_config;			// ARRAY - Media queries cofig
+	protected $mq_config;			// ARRAY - Media queries config
 	protected $mq_box_sizes;		// ARRAY - Media query box size loops
 	protected $mq_column_sizes;		// ARRAY - Media query column size loops
 	protected $content_css;			// WONDERFLUX INPUT - #content CSS depending on sidebar admin option
@@ -237,14 +231,39 @@ class wflux_layout {
 		$this->width_units = ( isset($_GET['wu']) && $_GET['wu'] == 'percent' ) ? '%' : 'px';
 
 		if ($this->width_units == 'px') {
+
 			$this->width = ( isset($_GET['w']) && is_numeric( $_GET['w'] ) && $_GET['w'] <= 4000 ) ? $_GET['w'] : 950;
+
 		} else {
+
 			$this->width = ( isset($_GET['w']) && is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
+
 		}
 
 		$this->columns_basic = ( isset($_GET['c']) && is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 16;
 		$this->class_prepend = ( !isset($this->class_prepend) ) ? 'box-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->class_prepend) );
 		$this->columns_prepend = ( !isset($this->columns_prepend) ) ? 'column-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->columns_prepend) );
+
+		if ( isset($_GET['r']) ) {
+
+			$this->range = explode('-', $_GET['r']);
+
+			if ( is_array($this->range) ) {
+				foreach ( $this->range as $key => $value ) {
+					$value = trim($value);
+					if ( !is_numeric($value) ) {
+						unset( $this->range[$key] );
+					}
+				}
+			}
+
+			if ( !in_array(1, $this->range) ) {
+				$this->range[] = 1;
+			}
+
+			sort($this->range);
+
+		}
 
 		// WONDERFLUX SPECIFIC
 		$this->content_css = ( isset($_GET['sbp']) && $_GET['sbp'] == 'right' ) ? false : 'left';
@@ -253,27 +272,28 @@ class wflux_layout {
 		$this->position = ( isset($_GET['p']) && in_array($_GET['p'], $position_accept) ) ? $_GET['p'] : 'middle';
 
 		// Loops of output
-		$this->relative = array(1,2,4,5,8,10);
+		$this->relative = $this->range;
 		// Add core column option to box array for output
 		if ( !in_array($this->columns_basic, $this->relative) ){
 			array_unshift( $this->relative, $this->columns_basic );
 			sort($this->relative);
 		}
 
-		$this->columns = array(1,2,4,5,8,10);
+		$this->columns = $this->range;
 		// Add core column option to columns array for output
 		if ( !in_array($this->columns_basic, $this->columns) ){
 			array_unshift( $this->columns, $this->columns_basic );
 			sort($this->columns);
 		}
 
-		$this->mq_box_sizes = array(1,2,4,5,8,10);
+		$this->columns_gutter = ( isset($_GET['g']) && is_numeric( $_GET['g'] ) && $_GET['g'] <= 25 ) ? (int)$_GET['g'] : 2;
+
+		$this->mq_box_sizes = $this->range;
 		// Add core column option to media query array for output
 		if ( !in_array($this->columns_basic, $this->mq_box_sizes) ){
 			array_unshift( $this->mq_box_sizes, $this->columns_basic );
 			sort($this->mq_box_sizes);
 		}
-		$this->columns_gutter = 2;
 
 		if ( isset( $_GET['mq_cols'] ) && is_array($_GET['mq_cols']) ){
 			$this->mq_column_sizes = $_GET['mq_cols'];
@@ -283,6 +303,7 @@ class wflux_layout {
 		}
 
 		$this->mq_config = array(
+
 			'tiny'	=> array(
 							'def'	=> 'mq-tiny',
 							'max'	=> 480,
@@ -311,6 +332,8 @@ class wflux_layout {
 						),
 
 		);
+
+		$this->mq_min = ( isset($_GET['mqmin']) && $_GET['mqmin'] == 'y' ) ? $_GET['mqmin'] : 'n';
 
 		// Internal values
 		$this->column_width = 100 / $this->columns_basic;
@@ -361,7 +384,7 @@ class wflux_layout {
 	 */
 	function containers() {
 
-		echo '/********** Core containers **********/' . $this->minify_2 . $this->minify;
+		echo '/***** Core containers *****/' . $this->minify_2 . $this->minify;
 
 		//Setup margin to position main containers
 		switch ($this->position) {
@@ -389,37 +412,19 @@ class wflux_layout {
 	}
 
 	/**
-	 * Outputs percent widths for blocks
-	 * REMOVED FOR THE MOMENT - avoid alternative CSS definitions and repeated code
-	 */
-	//function blocks() {
-
-		//echo '/********** Grid boxes **********/' . $this->minify_2;
-
-		// Main output
-		/*
-		for ( $limit=1; $limit <= $this->columns_basic; $limit++ ) {
-			echo '.' . $this->class_prepend . $limit . ' { width: '
-			. $this->column_width * $limit . '%; }' . $this->minify;
-		}
-		echo $this->minify;
-		*/
-
-	//}
-
-	/**
-	 * Outputs columns rules
+	 * Outputs column rules
 	 */
 	function columns() {
 
-		echo '/********** Traditional columns **********/' . $this->minify_2 . $this->minify;
+		echo '/***** Traditional columns *****/' . $this->minify_2 . $this->minify;
 
 		// CSS attribute wildcard selectors
 		echo 'div[class*="' . $this->columns_prepend . '"] { '
-		. 'float:left; margin-left: ' . $this->columns_gutter . '%; }'
+		. 'float:left; margin-left: ' . $this->columns_gutter / 2 . '%; margin-right: ' . $this->columns_gutter / 2 . '%; }'
 		 . $this->minify;
 
-		echo '.row.' . rtrim($this->columns_prepend, '-') . ' div:first-child { margin-left: 0; }' . $this->minify;
+		echo '.row-' . rtrim($this->columns_prepend, '-') . ' > div:first-child { margin-left: 0; margin-right: ' . $this->columns_gutter / 2 . '%; }' . $this->minify;
+		echo '.row-' . rtrim($this->columns_prepend, '-') . ' > div:last-child { margin-left: ' . $this->columns_gutter / 2 . '%; margin-right: 0; }' . $this->minify;
 
 		foreach ( $this->columns as $size_r ) {
 
@@ -497,7 +502,7 @@ class wflux_layout {
 
 		if ( !is_array($this->relative) ) return;
 
-		echo '/********** Grid boxes **********/' . $this->minify_2 . $this->minify;
+		echo '/***** Grid boxes *****/' . $this->minify_2 . $this->minify;
 
 		// CSS attribute wildcard selectors
 		echo 'div[class*="' . $this->class_prepend . '"] { '
@@ -545,14 +550,13 @@ class wflux_layout {
 	}
 
 	/**
-	 * Outputs relative sized CSS
-	 * $sizes = array of integers representing what sizes to output
+	 * Outputs push and pull classes
 	 */
 	function relative_push_pull() {
 
 		if ( !is_array($this->relative) ) return;
 
-		echo '/********** Push and pull **********/' . $this->minify . $this->minify_2;
+		echo '/***** Push and pull *****/' . $this->minify . $this->minify_2;
 
 		foreach ( $this->relative as $size ) {
 
@@ -562,13 +566,17 @@ class wflux_layout {
 
 					for ( $limit=1; $limit < $size; $limit++ ) {
 
-						echo '.push-' . $limit . '-' . $size . ' { margin-left:' . $limit * ( 100 / $size ) . '%; }' . $this->minify;
+						$push_val = $limit * ( 100 / $size );
+
+						echo '.push-' . $limit . '-' . $size . ' { margin-left:' . $push_val . '%; width:' . ( 100 - $push_val ) . '%; }' . $this->minify;
 
 					}
 
 					for ( $limit=1; $limit < $size; $limit++ ) {
 
-						echo '.pull-' . $limit . '-' . $size . ' { margin-left:-' . $limit * ( 100 / $size ) . '%; }' . $this->minify;
+						$pull_val = $limit * ( 100 / $size );
+
+						echo '.pull-' . $limit . '-' . $size . ' { margin-left:-' . $pull_val . '%; width:' . ( 100 - $pull_val ) . '%; }' . $this->minify;
 
 					}
 
@@ -583,14 +591,10 @@ class wflux_layout {
 	}
 
 	/**
-	 * Media queries output for general rules
-	 * 4 definitions:
-	 * rwd-tiny Tiny screens - small portrait phones
-	 * rwd-small Small screens - Lower spec landscape phones and some portrait tablets
-	 * rwd-medium Medium screens - Standard computers and landscape tablets
-	 * rwd-large Large screens - Swanky hi-res screens
+	 * Media query output utilities
+	 * Visibility and margin clearers when using push and pull classes
 	 */
-	function media_queries_visibility() {
+	function media_queries_utility() {
 
 		// Array of just definitions - used for -hide-except rules
 		$all_defs = array();
@@ -611,7 +615,7 @@ class wflux_layout {
 
 		$all_defs_count = count( $all_defs );
 
-		echo '/********** Visibility Media Queries **********/' . $this->minify_2 . $this->minify;
+		echo '/***** Visibility & Utility Media Queries *****/' . $this->minify_2 . $this->minify;
 
 		$sizes_count = 0;
 
@@ -636,8 +640,6 @@ class wflux_layout {
 			. '@media screen ' . $size_queries . ' {' . $this->minify;
 
 			for ( $limit=0; $limit <= $sizes_count; $limit++ ) {
-				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
-				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
 				echo '.' . $all_defs[$limit] . '-min-show';
 				echo ( $limit == $sizes_count ) ? ' ' : ', ';
 				echo ( $limit == $sizes_count ) ? '{ display:block; }' . "\n" : '';
@@ -645,8 +647,6 @@ class wflux_layout {
 			}
 
 			for ( $limit=($all_defs_count-1); $limit >= ($sizes_count+1); $limit-- ) {
-				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
-				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
 				echo '.' . $all_defs[$limit] . '-min-hide';
 				echo ( $limit == ($sizes_count+1) ) ? ' ' : ', ';
 				echo ( $limit == ($sizes_count+1) ) ? '{ display:block; }' . "\n" : '';
@@ -654,8 +654,6 @@ class wflux_layout {
 			}
 
 			for ( $limit=($all_defs_count-1); $limit >= ($sizes_count+1); $limit-- ) {
-				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
-				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
 				echo '.' . $all_defs[$limit] . '-min-show';
 				echo ( $limit == ($sizes_count+1) ) ? ' ' : ', ';
 				echo ( $limit == ($sizes_count+1) ) ? '{ display:none; }' . "\n" : '';
@@ -663,8 +661,6 @@ class wflux_layout {
 			}
 
 			for ( $limit=0; $limit <= $sizes_count; $limit++ ) {
-				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
-				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
 				echo '.' . $all_defs[$limit] . '-min-hide';
 				echo ( $limit == $sizes_count ) ? ' ' : ', ';
 				echo ( $limit == $sizes_count ) ? '{ display:none; }' . "\n" : '';
@@ -709,7 +705,7 @@ class wflux_layout {
 
 		$all_defs_count = count( $all_defs );
 
-		echo '/********** Layout Media Queries **********/' . $this->minify_2 . $this->minify;
+		echo '/***** Layout Media Queries *****/' . $this->minify_2 . $this->minify;
 
 		// CSS attribute wildcard selectors
 		$w_count = 2;
@@ -768,37 +764,80 @@ class wflux_layout {
 				}
 			}
 
-			/*
-			Responsive columns removed for the moment
-			Need to work out how to deal with gutter (maybe need additional .first override + .mq-{size}-gutter)
-			 */
+			if ( $this->mq_min == 'n' ) {
 
-			//echo ' /***** Columns *****/' . $this->minify;
+				echo ' /***** Responsive push and pull classes *****/' . $this->minify;
 
-			/*
-			// Column size loops
-			foreach ( $this->mq_column_sizes as $size_c ) {
-				if ( intval($size_c) < 101 ) {
-					for ( $limit=1; $limit < $size_c || $limit == 1; $limit++ ) {
+				// Push/pull general
+				foreach ( $this->mq_box_sizes as $size_r ) {
+					if ( intval($size_r) > 1 && intval($size_r) < 6 ) {
+						for ( $limit=1; $limit < $size_r || $limit == 1; $limit++ ) {
 
-						echo ' .' . $size['def'] . '-c-' . $limit . '-' . $size_c;
+							// Push
+							echo ' .' . $size['def'] . '-push-' . $limit . '-' . $size_r;
 
-						for ( $limit_def=0; $limit_def < ($all_defs_count); $limit_def++ ) {
-							echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-c-min-' . $limit . '-' . $size_c : '';
+							for ( $limit_def=0; $limit_def < ($all_defs_count); $limit_def++ ) {
+								echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-min-push-' . $limit . '-' . $size_r : '';
+							}
+
+							$push_val = $limit * ( 100 / $size_r );
+
+							//echo ' { width:' . ( 100/$size_r ) * $limit . '%; ';
+							echo ' { margin-left:' . $push_val . '%; width:' . ( 100 - $push_val ) . '%;';
+							//echo ( $size_r == 1 ) ? '' : 'float:left; ';
+							echo ' }' . $this->minify;
+
+							// Pull
+							echo ' .' . $size['def'] . '-pull-' . $limit . '-' . $size_r;
+
+							for ( $limit_def=0; $limit_def < ($all_defs_count); $limit_def++ ) {
+								echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-min-pull-' . $limit . '-' . $size_r : '';
+							}
+
+							echo ' { margin-left: -' . $push_val . '%; width:' . ( 100 - $push_val ) . '%;';
+							//echo ( $size_r == 1 ) ? '' : 'float:left; ';
+							echo ' }' . $this->minify;
+
 						}
-
-						$width = ( ((100 - ($size_c - 1) * $this->columns_gutter) / $size_c) * $limit )
-						+ ( $this->columns_gutter * ($limit - 1) );
-
-						echo ' { width:' . $width . '%; ';
-						//echo ( $size_c == 1 ) ? '' : 'float:left; ';
-						echo '}' . $this->minify;
-
 					}
-
 				}
+
+				// Push/pull for number of user columns configured
+				foreach ( $this->mq_column_sizes as $size_c ) {
+					if ( intval($size_c) < 101 ) {
+						for ( $limit=1; $limit < $size_c || $limit == 1; $limit++ ) {
+
+							// Push
+							echo ' .' . $size['def'] . '-push-' . $limit . '-' . $size_c;
+
+							for ( $limit_def=0; $limit_def < ($all_defs_count); $limit_def++ ) {
+								echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-min-push-' . $limit . '-' . $size_c : '';
+							}
+
+							$push_val = $limit * ( 100 / $size_c );
+
+							echo ' { margin-left:' . $push_val . '%; width:' . ( 100 - $push_val ) . '%;';
+							//echo ( $size_c == 1 ) ? '' : 'float:left; ';
+							echo ' }' . $this->minify;
+
+							// Pull
+							echo ' .' . $size['def'] . '-pull-' . $limit . '-' . $size_c;
+
+							for ( $limit_def=0; $limit_def < ($all_defs_count); $limit_def++ ) {
+								echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-min-pull-' . $limit . '-' . $size_c : '';
+							}
+
+							$pull_val = $limit * ( 100 / $size_c );
+
+							echo ' { margin-left: -' . $pull_val . '%; width:' . ( 100 - $pull_val ) . '%;';
+							//echo ( $size_c == 1 ) ? '' : 'float:left; ';
+							echo ' }' . $this->minify;
+
+						}
+					}
+				}
+
 			}
-			*/
 
 			// Close media query
 			echo '}' . $this->minify_2;
