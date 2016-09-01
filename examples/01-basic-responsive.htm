@@ -109,6 +109,7 @@
 			With the standard Flux Layout configuration you get 4 breakpoints aimed
 			at a broad screen types/user experiences, rather than individual devices.
 		</p>
+
 		<p>
 			All media query specific CSS classes start with:<br/>
 			<span class="code">.mq-tiny-</span> Very small screens like portrait phones<br/>
@@ -191,7 +192,7 @@
 
 		</section>
 
-		<h2 class="colour-accent">Columns demo</span></h2>
+		<h2 class="colour-accent">Columns demo</h2>
 
 		<p>
 			There are <strong>2 kinds of column system</strong> in Flux layout
@@ -208,6 +209,7 @@
 		</p>
 
 		<h2 class="colour-accent">Column system 1: box- class variable widths</h2>
+
 		<p>
 			By combining core box- classes with media query sizes gives you a powerful responsive system. You should note the classes that contain <span class="code">-min-</span> these will retain this size at all lower media query sizes.
 		</p>
@@ -349,7 +351,6 @@
 
 		</section>
 
-
 		<h2 class="colour-accent">Traditional mixed width columns (with gutter) - 10 columns</h2>
 
 		<p>Basic, non-responsive demo</p>
@@ -385,6 +386,85 @@
 			</div>
 
 		</section>
+
+	</div>
+</article>
+
+<article class="wrapper flux-layout-test-02">
+
+	<div class="container">
+
+		<h2 class="colour-accent">Responsive images</h2>
+
+		<p>To make images scale to their containers rather than overflow, just add the css class: <span class="code">fluid-content</span> to the image.</p>
+
+		<div class="demo-block">
+
+			<section class="row image-block">
+
+				<div class="box-1-4 mq-small-box-1-2 mq-tiny-box-1-1">
+
+					<img src="images/1000x1000-placeholder.png" class="img-logo fluid-width" alt="" width="500" height="500" />
+
+				</div>
+
+				<div class="box-1-4 mq-small-box-1-2 mq-tiny-box-1-1">
+
+					<img src="images/1000x1000-placeholder.png" class="img-logo fluid-width" alt="" width="500" height="500" />
+
+				</div>
+
+				<div class="box-1-4 mq-small-box-1-2 mq-tiny-box-1-1">
+
+					<img src="images/1000x1000-placeholder.png" class="img-logo fluid-width" alt="" width="500" height="500" />
+
+				</div>
+
+				<div class="box-1-4 mq-small-box-1-2 mq-tiny-box-1-1">
+
+					<img src="images/1000x1000-placeholder.png" class="img-logo fluid-width" alt="" width="500" height="500" />
+
+				</div>
+
+			</section>
+
+		</div>
+
+		<div class="demo-block">
+
+			<h2 class="colour-accent">Responsive containers</h2>
+
+			<p>Or you can add the css class: <span class="code">fluid-content</span> to the container (no additional image classes required).</p>
+
+			<section class="row image-block">
+
+				<div class="box-1-4 mq-small-box-1-2 mq-tiny-box-1-1 fluid-content">
+
+					<img src="images/1000x1000-placeholder.png" class="img-logo" alt="" width="500" height="500" />
+
+				</div>
+
+				<div class="box-1-4 mq-small-box-1-2 mq-tiny-box-1-1 fluid-content">
+
+					<img src="images/1000x1000-placeholder.png" class="img-logo" alt="" width="500" height="500" />
+
+				</div>
+
+				<div class="box-1-4 mq-small-box-1-2 mq-tiny-box-1-1 fluid-content">
+
+					<img src="images/1000x1000-placeholder.png" class="img-logo" alt="" width="500" height="500" />
+
+				</div>
+
+				<div class="box-1-4 mq-small-box-1-2 mq-tiny-box-1-1 fluid-content">
+
+					<img src="images/1000x1000-placeholder.png" class="img-logo" alt="" width="500" height="500" />
+
+				</div>
+
+			</section>
+
+		</div>
 
 	</div>
 </article>
