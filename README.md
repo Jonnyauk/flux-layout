@@ -51,16 +51,17 @@ Change Flux Layout stylesheet path to:
 `"../lib/flux-layout-static-min.css"`
 
 **Flux Layout Dynamic - Dynamic PHP generated responsive grid system**
-Change Flux Layout stylesheet path to: `"../lib/flux-layout-dynamic.php?&amp;w=80&amp;wu=percent&amp;p=middle&amp;sbp=left&amp;c=16&amp;g=2&amp;r=2-4-10&amp;mqmin=y"`
+Change Flux Layout stylesheet path to: `"../lib/flux-layout-dynamic.php?wu=percent&amp;w=80&amp;p=middle&amp;sbp=left&amp;c=16&amp;r=2-4-10&amp;g=2&amp;mqmin=y"`
 
 **Use the following URL parameters to generate your custom responsive grid system:**
-- **w**		= width of main container
-- **p** 		= position of main container
-- **sbp**	= sidebar position
-- **c**		= number of columns
-- **g**		= gutter between columns (%)
-- **r**		= range of additional column setups - defined as a hyphen (-) separated list of numbers, eg 2-4-5-8
-- **mqmin**	= remove rarely used rules in media queries - recommended - reduces output by over 50%!
+- **wu**	= Unit (percent, pixels - default: percent)
+- **w**		= Width of main container (number - default: 80, max: 100% or max: 4000px)
+- **p** 	= Position of main container (left, middle, right - default: middle)
+- **sbp**	= Sidebar position (left, right - default: left)
+- **c**		= Number of columns (number - default: 16, max = 100)
+- **r**		= Range of additional column setups - defined as a hyphen (-) separated list of numbers (2-4-5-12, default: none)
+- **g**		= % gutter between columns (number - default: 2, max: 25)
+- **mqmin**	= Remove rarely used rules in media queries - recommended - reduces output by over 50%! (y, n, default: y)
 
 Other notes
 ----------------------------------------------------------------------
