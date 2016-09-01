@@ -78,11 +78,11 @@ td,th { padding: 5px; }
 /*** Image handling ***/
 
 /* Fluid images for posts, comments, and widgets */
-.entry-content img, .entry-summary img, .comment-content img, .widget img, .wp-caption { max-width: 100%; }
+.entry-content img, .entry-summary img, .comment-content img, .widget img, .wp-caption, .fluid-content img { max-width: 100%; }
 
 /* Make sure images with WordPress-added height and width attributes are scaled correctly */
-.entry-content img, .entry-summary img, .comment-content img[height], img[class*="align"], img[class*="wp-image-"], img[class*="attachment-"] { height: auto; }
-img.size-full, img.size-large, img.wp-post-image { height: auto; max-width: 100%; }
+.entry-content img, .entry-summary img, .comment-content img[height], img[class*="align"], img[class*="wp-image-"], img[class*="attachment-"], .fluid-content img { height: auto; }
+img.size-full, img.size-large, img.wp-post-image, img.fluid-width { height: auto; max-width: 100%; }
 
 /*** Third-party services ***/
 
