@@ -1,6 +1,6 @@
 ====================================
 # Flux Layout
-#### Version v2.0 beta
+#### Version v2.1 beta
 #### Copyright (c)2014-2016 Jonny Allbut
 #### [Demo: http://fluxlayout.com](http://fluxlayout.com)
 #### [Author: https://jonnya.net](http://jonnya.net)
