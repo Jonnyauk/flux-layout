@@ -338,8 +338,8 @@ div[class*="column-"] { float:left; margin-left: 1%; margin-right: 1%; }
 
 /* mq-tiny: Tiny screens - small portrait phones */
 @media screen and (max-width:480px) {
-.mq-tiny-min-show { display:block; }
-.mq-large-min-hide, .mq-medium-min-hide, .mq-small-min-hide { display:block; }
+.mq-tiny-min-show { display:inline-block; }
+.mq-large-min-hide, .mq-medium-min-hide, .mq-small-min-hide { display:inline-block; }
 .mq-large-min-show, .mq-medium-min-show, .mq-small-min-show { display:none; }
 .mq-tiny-min-hide { display:none; }
 }
@@ -347,8 +347,8 @@ div[class*="column-"] { float:left; margin-left: 1%; margin-right: 1%; }
 
 /* mq-small: Small screens - Lower spec landscape phones and some portrait tablets */
 @media screen and (min-width:481px) {
-.mq-tiny-min-show, .mq-small-min-show { display:block; }
-.mq-large-min-hide, .mq-medium-min-hide { display:block; }
+.mq-tiny-min-show, .mq-small-min-show { display:inline-block; }
+.mq-large-min-hide, .mq-medium-min-hide { display:inline-block; }
 .mq-large-min-show, .mq-medium-min-show { display:none; }
 .mq-tiny-min-hide, .mq-small-min-hide { display:none; }
 }
@@ -356,8 +356,8 @@ div[class*="column-"] { float:left; margin-left: 1%; margin-right: 1%; }
 
 /* mq-medium: Medium screens - Standard computers and landscape tablets */
 @media screen and (min-width:769px) {
-.mq-tiny-min-show, .mq-small-min-show, .mq-medium-min-show { display:block; }
-.mq-large-min-hide { display:block; }
+.mq-tiny-min-show, .mq-small-min-show, .mq-medium-min-show { display:inline-block; }
+.mq-large-min-hide { display:inline-block; }
 .mq-large-min-show { display:none; }
 .mq-tiny-min-hide, .mq-small-min-hide, .mq-medium-min-hide { display:none; }
 }
@@ -365,7 +365,7 @@ div[class*="column-"] { float:left; margin-left: 1%; margin-right: 1%; }
 
 /* mq-large: Large screens - Swanky hi-res screens */
 @media screen and (min-width:1410px) {
-.mq-tiny-min-show, .mq-small-min-show, .mq-medium-min-show, .mq-large-min-show { display:block; }
+.mq-tiny-min-show, .mq-small-min-show, .mq-medium-min-show, .mq-large-min-show { display:inline-block; }
 .mq-tiny-min-hide, .mq-small-min-hide, .mq-medium-min-hide, .mq-large-min-hide { display:none; }
 }
 
